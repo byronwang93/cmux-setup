@@ -33,4 +33,4 @@ Run cmux from `/Applications`, not the installer disk image. The installer backs
 | File | Installs to |
 |---|---|
 | `sidebars/clean.js` | `~/.config/cmux/sidebars/clean.js` |
-| `ghostty/config` | `~/.config/ghostty/config` (font; run `cmux reload-config` after edits) |
+| `ghostty/config` | added as a block at the end of `~/.config/ghostty/config`, keeping your existing settings |
