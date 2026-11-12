@@ -14,7 +14,9 @@ Run cmux from `/Applications`, not the installer disk image. The installer backs
 
 ## What it does
 
-**Groups.** Click **＋ New group**, type a name and press Return. Hover a group label for **⊕** (new tab in the group) and the chevron (collapse). Drag tabs between groups.
+**Groups.** Click **＋ New group**, type a name and press Return. Hover a group label for **⊕** (new tab in the group) and the chevron (collapse).
+
+**Drag and drop.** Drag tabs from one group to another, or drag a group's label to move the whole group.
 
 <img src="docs/groups.png" width="238" alt="Collapsed groups and naming a new group">
 
