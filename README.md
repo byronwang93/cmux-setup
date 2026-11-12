@@ -10,7 +10,7 @@ A clean, Rex-style sidebar for [cmux](https://cmux.com): every tab lives in a co
 git clone https://github.com/byronwang93/cmux-setup && cd cmux-setup && ./install.sh
 ```
 
-Run cmux from `/Applications`, not the installer disk image. The installer backs up anything it replaces. To update later, run `git pull && ./install.sh`.
+Needs cmux 0.65 or newer, run from `/Applications`; the installer warns if either isn't the case. It backs up anything it changes. To update later, run `git pull && ./install.sh`.
 
 ## What it does
 
