@@ -386,6 +386,9 @@ function handleMove(id, index, extra) {
 // --- rows ----------------------------------------------------------------------
 const hasAgent = (w) => !!w && (w.agents ?? []).some((a) => a.status !== "ended");
 
+const isWorking = (w) => !!w && !(w.unread > 0) && (w.agents ?? []).some((a) => a.status === "working");
+const dotStep = () => Math.floor(data.clock()?.epoch ?? 0) % 3;
+
 // --- tab icons ---------------------------------------------------------------------
 // A custom icon is stored in the workspace description as "[icon:<sf-symbol>]" (cmux
 // saves descriptions across restarts); the tile colour is the workspace colour.
@@ -487,8 +490,9 @@ function workspaceRow(w, entry) {
   return ZStack({ alignment: "trailing" }, [
     HStack({ spacing: 9 }, [
       Image(() => iconSymbol(w()))
-        .font(10).weight("bold").color("white")
-        .frame({ width: 20, height: 20 })
+        .font(9).weight("medium").color("white")
+        .frame({ width: 11, height: 11 })   // fixed glyph box, so every icon's tile is the same size
+        .padding(4)                         // tile = glyph box + padding (background hugs content+padding)
         .background(() => iconTint(w()))
         .cornerRadius(5),
       Text(() => displayTitle(w()))
@@ -501,6 +505,13 @@ function workspaceRow(w, entry) {
     ])
       .frame({ maxWidth: "infinity" }),
     ZStack({}, [
+      // "Working" dots while an agent in this tab is mid-turn. The sidebar has no
+      // animation timers, so the bright dot steps along with the 1s data clock.
+      HStack({ spacing: 2.5 }, [0, 1, 2].map((i) =>
+        Circle({ size: 3.5 }).fill("#A1A1A6")
+          .opacity(() => (isWorking(w()) ? (dotStep() === i ? 1 : 0.35) : 0))))
+        .paddingTrailing(4)
+        .hideOnHover(),
       // Unread badge at rest; on hover it yields to the close button.
       Text(() => (w()?.unread > 0 ? String(w().unread) : ""))
         .font("caption2").bold().color("white")

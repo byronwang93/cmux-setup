@@ -27,6 +27,8 @@ The installer backs up any file it replaces (`*.bak-<timestamp>`), copies SF Mon
 
 **Icons**: right-click a tab → **Icon** (Claude, Terminal, Bug, Hammer, Globe, Book, Bell, Flag, Chart, Bolt, Star, Gear, Cube, Paintbrush, Game, Leaf, Flame, Briefcase, House, Heart) and **Icon Colour**. *Auto* shows an orange Claude tile while Claude is running in the tab, a grey terminal otherwise. Icons are saved in the tab's description as `[icon:<sf-symbol>]`, so they survive restarts.
 
+**Working indicator**: three dots on the right of a tab while Claude is mid-turn in it (the bright dot steps once a second).
+
 **Multi-select**: Cmd-click / Shift-click tabs to move, group or close several at once.
 
 ## Files
