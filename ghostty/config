@@ -1,0 +1,5 @@
+# Rex-like terminal text in cmux (cmux renders with Ghostty)
+font-family = "SF Mono"
+font-size = 13
+font-thicken = false
+adjust-cell-height = 20%
