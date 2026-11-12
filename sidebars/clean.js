@@ -491,7 +491,7 @@ function workspaceRow(w, entry) {
     HStack({ spacing: 9 }, [
       Image(() => iconSymbol(w()))
         .font(9).weight("medium").color("white")
-        .frame({ width: 11, height: 11 })   // fixed glyph box, so every icon's tile is the same size
+        .frame({ width: 10, height: 10 })   // fixed glyph box, so every icon's tile is the same size
         .padding(4)                         // tile = glyph box + padding (background hugs content+padding)
         .background(() => iconTint(w()))
         .cornerRadius(5),
@@ -538,8 +538,8 @@ function workspaceRow(w, entry) {
         .onTap(() => closeWorkspace(w().id)),
     ]),
   ])
-    .paddingHorizontal(8)
-    .paddingVertical(6)
+    .paddingHorizontal(10)
+    .paddingVertical(7)
     .cornerRadius(10)
     .background(() => (isMultiSelected(w()) ? "#4C9EEB33" : (isSelected(w()) ? "#7f7f7f3d" : null)))
     .hoverBackground(() => (isMultiSelected(w()) ? "#4C9EEB33" : (isSelected(w()) ? "#7f7f7f3d" : "#7f7f7f24")))
@@ -572,7 +572,7 @@ function workspaceEditRow(w, entry) {
     }).font(13),
   ])
     .paddingHorizontal(10)
-    .paddingVertical(6)
+    .paddingVertical(7)
     .cornerRadius(8)
     .background("#7f7f7f3d")
     .frame({ maxWidth: "infinity" });
@@ -605,7 +605,7 @@ function groupHeader(groupId) {
       .showOnHover()
       .onTap(() => toggleCollapse(g())),
   ])
-    .paddingHorizontal(8)
+    .paddingHorizontal(10)
     .paddingTop(12)
     .paddingBottom(4)
     .frame({ maxWidth: "infinity" })
@@ -643,7 +643,7 @@ function groupEditRow(groupId) {
       onCancel: () => setEditingId(null),
     }).font(12).weight("semibold"),
   ])
-    .paddingLeading(8)
+    .paddingLeading(10)
     .paddingTrailing(10)
     .paddingVertical(5)
     .cornerRadius(8)
@@ -738,7 +738,7 @@ function newGroupFooter() {
           onCancel: () => setCreatingGroup(false),
         })
           .font(12)
-          .paddingHorizontal(8).paddingVertical(5)
+          .paddingHorizontal(10).paddingVertical(5)
           .cornerRadius(8).background("#7f7f7f3d")
           .frame({ maxWidth: "infinity" })
       : HStack({ spacing: 6 }, [
@@ -746,7 +746,7 @@ function newGroupFooter() {
           Text("New group").font(12).color("tertiary"),
           Spacer(),
         ])
-          .paddingHorizontal(8).paddingVertical(5)
+          .paddingHorizontal(10).paddingVertical(5)
           .cornerRadius(8).hoverBackground("#7f7f7f24")
           .frame({ maxWidth: "infinity" })
           .onTap(() => setCreatingGroup(true))
