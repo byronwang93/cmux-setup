@@ -491,10 +491,14 @@ function workspaceRow(w, entry) {
   // own padding, so the highlight must sit on an outer layer that wraps the padded row.
   return ZStack({ alignment: "leading" }, [ZStack({ alignment: "trailing" }, [
     HStack({ spacing: 9 }, [
-      Image(() => iconSymbol(w()))
-        .font(9).weight("medium").color("white")
-        .frame({ width: 10, height: 10 })   // fixed glyph box, so every icon's tile is the same size
-        .padding(4)                         // tile = glyph box + padding (background hugs content+padding)
+      // The glyph sits in a fixed 11pt box (an inner layer), and the tile is drawn on
+      // the outer layer, so every icon's tile is the same size whatever the symbol.
+      ZStack({}, [
+        Image(() => iconSymbol(w()))
+          .font(9).weight("medium").color("white")
+          .frame({ width: 11, height: 11 }),
+      ])
+        .padding(4)
         .background(() => iconTint(w()))
         .cornerRadius(5),
       Text(() => displayTitle(w()))
@@ -608,7 +612,7 @@ function groupHeader(groupId) {
       .showOnHover()
       .onTap(() => toggleCollapse(g())),
   ])
-    .paddingLeading(6)
+    .paddingLeading(10)
     .paddingTrailing(10)
     .paddingTop(12)
     .paddingBottom(4)

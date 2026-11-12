@@ -1,46 +1,34 @@
 # cmux-setup
 
-A clean, Rex-style setup for [cmux](https://cmux.com): a minimal sidebar where every tab lives in a collapsible group, plus SF Mono as the terminal font.
+A clean, Rex-style sidebar for [cmux](https://cmux.com): every tab lives in a collapsible group, with icons and a "working" indicator for Claude. Also sets the terminal font to SF Mono.
+
+<img src="docs/sidebar.png" width="238" alt="Sidebar with groups and tab icons">
 
 ## Install
 
-Needs cmux from `/Applications` (not a mounted installer disk image).
-
 ```sh
-git clone <this repo> && cd cmux-setup && ./install.sh
+git clone https://github.com/byronwang93/cmux-setup && cd cmux-setup && ./install.sh
 ```
 
-The installer backs up any file it replaces (`*.bak-<timestamp>`), copies SF Mono out of Terminal.app into `~/Library/Fonts`, and switches cmux to the `clean` sidebar. Your previous sidebar is still listed in the sidebar picker if you want to switch back.
+Run cmux from `/Applications`, not the installer disk image. The installer backs up anything it replaces. To update later, run `git pull && ./install.sh`.
 
-## Using the sidebar
+## What it does
 
-**Groups**
-- **＋ New group** at the bottom: type a name and press Return. The group starts with one fresh tab; drag others in. Cmd-click tabs first to start the group with those instead.
-- Hover a group label to see **⊕** (new tab in this group) and the **chevron** (collapse). Clicking the label also collapses it.
-- Double-click a label to rename; right-click it to pin, ungroup or delete.
-- Drag tabs between groups; drag a group label to move the whole group.
+**Groups.** Click **＋ New group**, type a name and press Return. Hover a group label for **⊕** (new tab in the group) and the chevron (collapse). Drag tabs between groups.
 
-**Every tab is in a group**
-- A new tab joins the group of the tab you were on.
-- Any other loose tab (e.g. after Ungroup / Delete Group) goes to an **Inbox** group, created when needed.
-- Dropping a tab between groups puts it in the nearest group.
+<img src="docs/groups.png" width="238" alt="Collapsed groups and naming a new group">
 
-**Icons**: right-click a tab → **Icon** (Claude, Terminal, Bug, Hammer, Globe, Book, Bell, Flag, Chart, Bolt, Star, Gear, Cube, Paintbrush, Game, Leaf, Flame, Briefcase, House, Heart) and **Icon Colour**. *Auto* shows an orange Claude tile while Claude is running in the tab, a grey terminal otherwise. Icons are saved in the tab's description as `[icon:<sf-symbol>]`, so they survive restarts.
+**Every tab is in a group.** New tabs join the group you're in. Anything left loose goes to **Inbox**.
 
-**Working indicator**: three dots on the right of a tab while Claude is mid-turn in it (the bright dot steps once a second).
+**Icons.** Right-click a tab → **Icon** / **Icon Colour**. *Auto* shows the Claude tile while Claude is running, and a terminal otherwise.
 
-**Multi-select**: Cmd-click / Shift-click tabs to move, group or close several at once.
+<img src="docs/icons.png" width="455" alt="Icon menu">
+
+**Working dots.** Three dots appear on a tab while Claude is mid-turn in it.
 
 ## Files
 
 | File | Installs to |
 |---|---|
 | `sidebars/clean.js` | `~/.config/cmux/sidebars/clean.js` |
-| `ghostty/config` | `~/.config/ghostty/config` (cmux renders terminals with Ghostty) |
-
-Edit `ghostty/config` to change the font size (`font-size`), then `cmux reload-config`.
-
-## Notes
-
-- cmux groups are always owned by one of their tabs (the "anchor"), so a group can't be empty and a tab that heads a group can't join another one.
-- Claude sessions are resumed after a cmux restart by cmux itself (`terminal.autoResumeAgentSessions`, on by default).
+| `ghostty/config` | `~/.config/ghostty/config` (font; run `cmux reload-config` after edits) |
