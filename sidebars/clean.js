@@ -487,7 +487,9 @@ function workspaceRow(w, entry) {
   // No fades anywhere (they read as glitches when they appear); overflow
   // truncates with a plain ellipsis, and a title too long to fit starts
   // marqueeing after the hover holds 0.5s.
-  return ZStack({ alignment: "trailing" }, [
+  // Padding lives on an INNER layer: the host draws a node's background before its
+  // own padding, so the highlight must sit on an outer layer that wraps the padded row.
+  return ZStack({ alignment: "leading" }, [ZStack({ alignment: "trailing" }, [
     HStack({ spacing: 9 }, [
       Image(() => iconSymbol(w()))
         .font(9).weight("medium").color("white")
@@ -540,6 +542,7 @@ function workspaceRow(w, entry) {
   ])
     .paddingHorizontal(10)
     .paddingVertical(7)
+    .frame({ maxWidth: "infinity" })])
     .cornerRadius(10)
     .background(() => (isMultiSelected(w()) ? "#4C9EEB33" : (isSelected(w()) ? "#7f7f7f3d" : null)))
     .hoverBackground(() => (isMultiSelected(w()) ? "#4C9EEB33" : (isSelected(w()) ? "#7f7f7f3d" : "#7f7f7f24")))
@@ -605,7 +608,8 @@ function groupHeader(groupId) {
       .showOnHover()
       .onTap(() => toggleCollapse(g())),
   ])
-    .paddingHorizontal(10)
+    .paddingLeading(6)
+    .paddingTrailing(10)
     .paddingTop(12)
     .paddingBottom(4)
     .frame({ maxWidth: "infinity" })
