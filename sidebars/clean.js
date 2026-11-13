@@ -620,7 +620,7 @@ function groupHeader(groupId) {
     .frame({ maxWidth: "infinity" })])
     .cornerRadius(8)
     .hoverBackground("#7f7f7f24")
-    .paddingTop(8)
+    .paddingTop(4)
     .frame({ maxWidth: "infinity" })
     .fixed()
     .block("h:" + groupId)
