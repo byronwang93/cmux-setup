@@ -590,7 +590,10 @@ function groupHeader(groupId) {
   const anchor = () => (data.workspaces() ?? []).find((w) => w.id === g().anchorId);
   const groupAct = (action) => () =>
     cmux("workspace.group.action", { group_id: groupId, action });
-  return HStack({ spacing: 6 }, [
+  // Inner layer carries the padding, outer layer the hover highlight (the
+  // host puts padding outside backgrounds, so this keeps the label inset
+  // inside the highlight). The outer paddingTop is the gap above the group.
+  return ZStack({ alignment: "leading" }, [HStack({ spacing: 6 }, [
     Text(() => g().name).font(12).weight("semibold").lineLimit(1).truncation("tail")
       .color("tertiary"),
     Text(() => (isCollapsed(g()) ? String(membersOf(groupId).length) : ""))
@@ -612,10 +615,12 @@ function groupHeader(groupId) {
       .showOnHover()
       .onTap(() => toggleCollapse(g())),
   ])
-    .paddingLeading(10)
-    .paddingTrailing(10)
-    .paddingTop(12)
-    .paddingBottom(4)
+    .paddingHorizontal(10)
+    .paddingVertical(4)
+    .frame({ maxWidth: "infinity" })])
+    .cornerRadius(8)
+    .hoverBackground("#7f7f7f24")
+    .paddingTop(8)
     .frame({ maxWidth: "infinity" })
     .fixed()
     .block("h:" + groupId)
